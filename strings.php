@@ -160,7 +160,7 @@ echo "</br></br>Write a PHP script to print letters from 'a' to 'z'.</br>";
 for($i = 'a'; $i < 'z'; $i++)
 	echo $i;
 
-echo "</br></br>What will display the next code: $d = 'A00'; echo ++$d;</br>";
+echo "</br></br>What will display the next code...</br>";
 $d = 'A00';
 echo ++$d;
 
