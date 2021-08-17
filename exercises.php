@@ -153,26 +153,118 @@ $color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
 $mode = 'UPPER';
 switch ($mode) {
     case 'LOWER': {
-        foreach ($color as $key => $val) {  //not working
-            $key = strtolower($key);
-            $val = strtolower($val);
+        foreach ($color as $key => $val) {
+            $color[$key] = strtolower($val);
         }
-    }
+    }; break;
     case 'UPPER': {
         foreach ($color as $key => $val) {
-            $key = strtoupper($key);
-            $val = strtoupper($val);
+            $color[$key] = strtoupper($val);
         }
-    }
+    } break;
 }
 print_r($color);
 
 
+echo "</br></br>13</br>";
+
+function divisibleByFour($elem) {
+    return !($elem % 4);
+}
+
+$divisible = array_filter(range(200, 250), "divisibleByFour");
+
+foreach ($divisible as $item) {
+    echo "$item </br>";
+}
 
 
+echo "</br></br>14</br>";
+
+$arr = array("abcd","abc","de","hjjj","g","wer");
+$lengths = array_map("strlen", $arr);
+echo "The shortest array length is " . min($lengths) . "</br>";
+echo "The longest array length is " . max($lengths);
 
 
+echo "</br></br>15</br>";
+
+$generated = [];
+foreach (range(11, 20) as $counter) {
+    $temp = rand(11, 20);
+    while(in_array($temp, $generated)) {
+        $temp = rand(11, 20);
+    }
+    $generated[] = $temp;
+    echo $temp . " ";
+}
 
 
+echo "</br></br>16</br>";
+
+$arr = array(2 => 5, 6 => 1, 10 => 12, 0 => 2);
+
+echo max(array_keys($arr));
 
 
+echo "</br></br>17</br>";
+
+$arr = array(-1,0,1,12,-100,1);
+echo min($arr);
+
+
+echo "</br></br>18</br>";
+
+function floorWithPrecision($num, $precision, $separator) {
+    return number_format($num, $precision, $separator);
+}
+
+echo floorWithPrecision(-2.9636, 3, ".");
+
+
+echo "</br></br>19</br>";
+
+$color = array ( "color" => array ( "a" => "Red", "b" => "Green", "c" => "White"),
+    "numbers" => array ( 1, 2, 3, 4, 5, 6 ),
+    "holes" => array ( "First", 5 => "Second", "Third"));
+
+echo $color['color']['a'] . " " . $color['holes'][5];
+
+
+echo "</br></br>20</br>";
+
+function sortByPriority($priorities, $arr)
+{
+    $toSortArr = array_combine($priorities, $arr);
+    ksort($toSortArr);
+
+    return $toSortArr;
+}
+
+$priorities = array(5, 2, 1, 3, 4, 8, 0);
+$arr = array(1, 2, 3, 4, 5, 6, 7);
+
+print_r(sortByPriority($priorities, $arr));
+
+
+echo "</br></br>21</br>";
+
+function compareSubnets($s1, $s2) {
+    $s1_arr = explode('.', $s1);
+    $s2_arr = explode('.', $s2);
+
+    for($i = 0; $i < 3; $i++) {
+        if($s1_arr[$i] < $s2_arr[$i]) return -1;
+            elseif($s1_arr[$i] > $s2_arr[$i]) return 1;
+    }
+
+    return -1;
+}
+
+$subnet_list = array('192.169.12', '192.167.11', '192.169.14', '192.168.13', '192.167.12', '122.169.15',  '192.167.16');
+
+usort($subnet_list, 'compareSubnets');
+print_r($subnet_list);
+
+
+echo "</br></br>22</br>";
