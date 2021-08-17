@@ -235,8 +235,8 @@ echo "</br></br>20</br>";
 
 function sortByPriority($priorities, $arr)
 {
-    $toSortArr = array_combine($priorities, $arr);
-    ksort($toSortArr);
+    $toSortArr = $arr;
+    array_multisort($priorities, $toSortArr);
 
     return $toSortArr;
 }
@@ -267,4 +267,136 @@ usort($subnet_list, 'compareSubnets');
 print_r($subnet_list);
 
 
-echo "</br></br>22</br>";
+echo "</br></br>26</br>";
+
+function shufflePreserving($arr) {
+    $keys = array_keys($arr);
+    shuffle($keys);
+    $shuffledArr = [];
+
+    foreach ($keys as $key) {
+        $shuffledArr[$key] = $arr[$key];
+    }
+
+    return $shuffledArr;
+}
+
+$arr = array('A' => 1, 'B' => 2, 'C' => 3, 'D' => 4, 'E' => 5);
+print_r(shufflePreserving($arr));
+
+
+echo "</br></br>27</br>";
+
+function generateRandomPassword($length) {
+    $characters = range('!', 'z');
+    shuffle($characters);
+    return array_slice($characters, rand(0, count($characters) - $length - 1), $length);
+}
+
+print_r(generateRandomPassword(10));
+
+
+echo "</br></br>29</br>";
+
+function generateArrayByRange($rangeStr) {
+    return range(0, $rangeStr);
+}
+
+print_r(generateArrayByRange('10'));
+
+
+echo "</br></br>31</br>";
+
+$arr = array('A' => 1, 'B' => 2, 'C' => 3, 'D' => 4, 'F' => 6 ,'E' => 5);
+$indexOfMax = array_search(max($arr), $arr);
+
+echo $indexOfMax;
+
+
+echo "</br></br>35</br>";
+
+function customTrim(&$item, $index, $charToTrim) {
+    echo $charToTrim;
+    $item = trim($item, $charToTrim);
+}
+
+$arr = array('00hfghgfh000', '0hfghfgh0000', 'fdsg0', '0gdfgdfg', '000v');
+array_walk($arr,'customTrim', '0');
+
+print_r($arr);
+
+
+echo "</br></br>36</br>";
+
+$color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+$lowerColor = array_map('strtolower', $color);
+$upperColor = array_map('strtoupper', $color);
+
+print_r($lowerColor);
+print_r($upperColor);
+
+
+echo "</br></br>37</br>";
+
+function countValue($arr, $val) {
+    $counter = 0;
+    foreach ($arr as $item) {
+        if($item === $val) $counter++;
+    }
+
+    return $counter;
+}
+
+$arr = array(1, 2, 3, 4, 5, 1, 2, 3, 1, 1, 1, 2, 6, 1, 7, 8, 1, 10);
+echo countValue($arr, 1);
+
+
+echo "</br></br>39</br>";
+
+$arr = array(1, 2, 3, 4, 5, 1, 2, 3, 1, 1, 1, 2, 6, 1, 7, 8, 1, 10);
+$filteredArray = array_unique($arr);
+print_r($filteredArray);
+
+
+echo "</br></br>40</br>";
+
+$color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+
+sort($color);
+print_r($color);
+
+
+echo "</br></br>59</br>";
+
+echo array_product(range(1, 20));
+
+
+echo "</br></br>58</br>";
+
+$keys = array('x', 'y', 'y');
+$vals = array(10, 20, 30);
+
+$pairedArr = array_combine($keys, $vals);
+print_r($pairedArr);
+
+
+echo "</br></br>57</br>";
+
+function keyCompare($k1, $k2) {
+    if ($k1 === $k2) {
+        return 0;
+    }
+    return ($k1 > $k2) ? 1 : -1;
+}
+function multidimArrayDif($arr1, $arr2) {
+    $result = [];
+    foreach ($arr1 as $key => $item) {
+        if(is_array($item)) $result[] = array_diff_uassoc($item, $arr2[$key], 'keyCompare');
+    }
+    return $result;
+}
+
+$color1=array('a'=>'White','b'=>'Red','c'=>array('a'=>'Green','b'=>'Blue','c'=>'Yellow'));
+$color2=array('a'=>'White','b'=>'Red','c'=>array('a'=>'White','b'=>'Red','c'=>'Yellow'));
+
+print_r(multidimArrayDif($color1, $color2));
