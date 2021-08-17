@@ -400,3 +400,16 @@ $color1=array('a'=>'White','b'=>'Red','c'=>array('a'=>'Green','b'=>'Blue','c'=>'
 $color2=array('a'=>'White','b'=>'Red','c'=>array('a'=>'White','b'=>'Red','c'=>'Yellow'));
 
 print_r(multidimArrayDif($color1, $color2));
+
+
+echo "</br></br>56</br>";
+
+$matrix = array_fill(0, 10, array_fill(0, 10, 10));
+print_r($matrix);
+
+
+echo "</br></br>54</br>";
+
+$arr = ['', 'a', 'b', ' ', 'c', '', ' ', ''];
+$result = array_filter($arr, function ($item) { return preg_match("#\S#", $item); });
+print_r($result);
